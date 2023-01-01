@@ -31,7 +31,7 @@ const server = http.createServer((req, res) =>{
 
     res.write("</html>")
 
-    res.end(); // After end we cant write response after it.
+    res.end(); // After end we cant write response after it.git 
     // process.exit();/
 })
 
