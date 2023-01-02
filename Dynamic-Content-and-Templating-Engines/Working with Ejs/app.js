@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public'))) // should be execute on 
 //Routing
 app.use('/admin', adminData.routes)  // add product page and redirect to product page
 app.use(shopRoutes) // Product page
-app.use(notFound) // If page is not found
+app.use(notFound) // If page is not found ..
 
 
 app.listen(8000)
