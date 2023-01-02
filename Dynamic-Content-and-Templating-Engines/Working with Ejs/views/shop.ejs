@@ -23,11 +23,19 @@
     <main>
         <h1>My Products</h1>
         <% if (hasProduct) { %>
-            <p>List of all the products...</p>
-            <% for(let prod in %>
-           <%} %>
+            <p>List of all the products...</p> 
+              <%= products[0].title%>
 
-        
+              <!-- <%products.forEach(prods=>{  %>
+
+                <%=prods.title%>
+                <% }) %> -->
+
+           <% for(let prods of products) {%>
+           <p> <%=prods.title%> </p>
+           <% }%> 
+
+           <% }%> 
     </main>
 </body>
 
