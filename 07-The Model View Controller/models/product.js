@@ -43,7 +43,7 @@ module.exports = class Product {
     }
 
     static fetchAll(cb){
-      fs(p, (err, data)=>{
+      fs.readFile(p, (err, data)=>{
         if(err) {
             cb([])
         } else  {

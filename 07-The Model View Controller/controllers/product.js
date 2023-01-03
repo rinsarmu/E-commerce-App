@@ -24,9 +24,7 @@ exports.postAddProduct = (req, res, next)=>{
                 path : req.url
             })
         })
-        for(const prod in products) {
-            console.log("oooooo", prod.title);
-        }
+      
         // res.sendFile(path.join(rootDir, 'views', 'shop.html'))
         
     }
