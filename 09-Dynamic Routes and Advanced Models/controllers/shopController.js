@@ -48,7 +48,7 @@ exports.getCheckOut = (req, res, next)=>{
 }
 
 
-    exports.getProduct = (req, res, next)=>{
+    exports.getProducts = (req, res, next)=>{
         
          Product.fetchAll(products=>{
             res.render('shop/product--list', {
@@ -61,4 +61,9 @@ exports.getCheckOut = (req, res, next)=>{
       
         // res.sendFile(path.join(rootDir, 'views', 'shop.html'))
         
+    }
+
+    exports.getProduct = (req, res, next) =>{
+        const id = req.params.productId
+        res.redirect('/')
     }
