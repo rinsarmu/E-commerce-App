@@ -64,6 +64,13 @@ exports.getCheckOut = (req, res, next)=>{
     }
 
     exports.getProduct = (req, res, next) =>{
-        const id = req.params.productId
-        res.redirect('/')
+        const id = req.params.productId;
+        Product.findById(id, product=>{
+            console.log(product);
+            res.render('shop/product--detail', {
+               pageTitle: "Detail product",
+               path: req.url,
+               product: product,
+            })
+        })
     }
