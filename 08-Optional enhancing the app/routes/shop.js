@@ -9,6 +9,8 @@ const shopController = require('../controllers/shopController')
 router.get('/', shopController.getIndex ) 
 router.get('/products', shopController.getProduct ) 
 router.get('/cart', shopController.getCart ) 
+router.get('/orders', shopController.getOrders ) 
+
 router.get('/checkout', shopController.getCheckOut ) 
 
 module.exports = router;

@@ -22,6 +22,20 @@ exports.getCart = (req, res, next)=>{
             path : req.url
         })
     }) 
+
+
+}
+
+exports.getOrders = (req, res, next)=>{
+    Product.fetchAll(products=>{
+        res.render('shop/orders', {
+            pageTitle: 'Your Orders',
+            hasProduct: products.length > 0,
+            path : req.url
+        })
+    }) 
+
+    
 }
 
 exports.getCheckOut = (req, res, next)=>{
