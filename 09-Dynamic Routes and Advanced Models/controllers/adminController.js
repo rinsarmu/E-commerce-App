@@ -9,7 +9,6 @@ exports.getAddProduct = (req, res, next)=>{
 exports.postAddProduct = (req, res, next)=>{
     const {title,description,price, imageUrl} = req.body
     const product = new Product(title, description, price, imageUrl);
-    console.log(product)
     product.save()
     res.redirect('/') 
 }

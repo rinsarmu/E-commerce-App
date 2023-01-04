@@ -24,6 +24,7 @@ module.exports = class Product {
         this.imageUrl = imageUrl
     }
     save() {
+        this.id = (Math.random()+ 1).toString();
         getProductFromFile(products=>{
             products.push(this)
             fs.writeFileSync(p,JSON.stringify(products));
