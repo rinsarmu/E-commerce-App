@@ -7,7 +7,7 @@ const products = [];
 
 router.get("/add-product",productController.getAddProduct )
 
-
+router.get('/products',productController.getAdminProducts)
 router.post('/product',productController.postAddProduct)
 
 module.exports = router;
