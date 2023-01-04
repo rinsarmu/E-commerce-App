@@ -22,8 +22,12 @@ exports.getCart = (req, res, next)=>{
             path : req.url
         })
     }) 
+}
 
-
+exports.postCart = (req, res, next)=>{
+    const prodId = req.body.productId
+    console.log(prodId);
+    res.redirect('/')
 }
 
 exports.getOrders = (req, res, next)=>{

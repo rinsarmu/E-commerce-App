@@ -11,6 +11,7 @@ router.get('/products', shopController.getProducts )
 router.get('/products/:productId', shopController.getProduct )  //It should be bottom if it have the same starting index with the other. eg /products/...
 
 router.get('/cart', shopController.getCart ) 
+router.post('/cart',shopController.postCart)
 router.get('/orders', shopController.getOrders ) 
 
 router.get('/checkout', shopController.getCheckOut ) 
