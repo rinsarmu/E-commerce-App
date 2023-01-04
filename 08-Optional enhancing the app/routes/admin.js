@@ -8,6 +8,8 @@ const products = [];
 router.get("/add-product",adminController.getAddProduct )
 
 router.get('/products',adminController.getProduct)
+router.get('/edit--product',adminController.getEditProduct)
+
 router.post('/product',adminController.postAddProduct)
 
 module.exports = router;

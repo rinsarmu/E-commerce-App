@@ -25,6 +25,12 @@ exports.getProduct = (req, res, next)=>{
        })
    })
  
-   // res.sendFile(path.join(rootDir, 'views', 'shop.html'))
-   
+}
+
+exports.getEditProduct = (req, res, next)=>{
+    res.render('admin/edit--product', {
+        pageTitle: 'Edit Product',
+        path: '/admin/edit--product'
+
+    })
 }

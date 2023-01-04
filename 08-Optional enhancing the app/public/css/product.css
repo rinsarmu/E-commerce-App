@@ -23,3 +23,13 @@
 .product__description {
     text-align: center;
 }
+
+.edit--link{
+text-decoration: none;
+}
+
+.btn__cards{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
