@@ -2,10 +2,21 @@
 
 const Product = require('../models/product')
 
+exports.getProducts = (req, res, next)=>{
+        
+    Product.fetchAll(products=>{
+       res.render('shop/product--list', {
+           pageTitle: 'All Product',
+           prods: products,
+           hasProduct: products.length > 0,
+           path : req.url
+       })
+   })
+}
 
 exports.getIndex = (req, res, next)=>{
     Product.fetchAll(products=>{
-        res.render('shop/product--list', {
+        res.render('shop/index', {
             pageTitle: 'Product',
             prods: products,
             hasProduct: products.length > 0,
@@ -52,21 +63,8 @@ exports.getCheckOut = (req, res, next)=>{
 }
 
 
-    exports.getProducts = (req, res, next)=>{
-        
-         Product.fetchAll(products=>{
-            res.render('shop/product--list', {
-                pageTitle: 'All Product',
-                prods: products,
-                hasProduct: products.length > 0,
-                path : req.url
-            })
-        })
-      
-        // res.sendFile(path.join(rootDir, 'views', 'shop.html'))
-        
-    }
 
+      
     exports.getProduct = (req, res, next) =>{
         const id = req.params.productId;
         Product.findById(id, product=>{
