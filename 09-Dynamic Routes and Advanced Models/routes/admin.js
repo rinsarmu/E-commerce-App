@@ -8,7 +8,7 @@ const products = [];
 router.get("/add-product",adminController.getAddProduct )
 
 router.get('/products',adminController.getProduct)
-router.get('/edit--product',adminController.getEditProduct)
+router.get('/edit--product/:productId',adminController.getEditProduct)
 
 router.post('/product',adminController.postAddProduct)
 

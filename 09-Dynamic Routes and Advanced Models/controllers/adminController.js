@@ -2,7 +2,7 @@
 
 const Product = require('../models/product')
 exports.getAddProduct = (req, res, next)=>{
-    res.render('admin/add-product', {pageTitle: "Add Product", path : req.url})
+    res.render('admin/edit--product', {pageTitle: "Add Product", path : req.url})
     
 }
 
@@ -27,9 +27,11 @@ exports.getProduct = (req, res, next)=>{
 }
 
 exports.getEditProduct = (req, res, next)=>{
+    const editMode = req.query.edit;
+    const productId = req.params.productId
     res.render('admin/edit--product', {
         pageTitle: 'Edit Product',
-        path: '/admin/edit--product'
-
+        path: '/admin/edit--product',
+        editing: editMode
     })
 }
