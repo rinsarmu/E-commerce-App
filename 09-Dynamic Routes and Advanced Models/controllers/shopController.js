@@ -1,6 +1,7 @@
 // const products = [];
 
 const Product = require('../models/product')
+const Cart = require('../models/cart')
 
 exports.getProducts = (req, res, next)=>{
         
@@ -11,7 +12,7 @@ exports.getProducts = (req, res, next)=>{
            hasProduct: products.length > 0,
            path : req.url
        })
-   })
+   }) 
 }
 
 exports.getIndex = (req, res, next)=>{
@@ -37,8 +38,14 @@ exports.getCart = (req, res, next)=>{
 
 exports.postCart = (req, res, next)=>{
     const prodId = req.body.productId
+    Product.findById(prodId, (product)=>{
+        console.log("object");
+        console.log("pric : ", product.price);
+        Cart.addProduct(prodId, product.price)
+
+    })
     console.log(prodId);
-    res.redirect('/')
+    res.redirect('/cart')
 }
 
 exports.getOrders = (req, res, next)=>{
