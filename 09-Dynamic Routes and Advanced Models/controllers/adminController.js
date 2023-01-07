@@ -30,10 +30,11 @@ exports.getEditProduct = (req, res, next)=>{
     console.log("editMode :", editMode);
     const productId = req.params.productId
     Product.findById(productId, product =>{
+        console.log(product.description);
         res.render('admin/edit--product', {
             pageTitle: 'Edit Product',
             path: '/admin/edit--product',
-            editing: editMode,
+            editing: true,
             product: product
     })
     })

@@ -10,26 +10,29 @@
         <form class="product-form" action="/admin/product" method="POST">
             <div class="form-control">
                 <label for="title">Title</label>
-                <input type="text" name="title" id="title">
+                <input type="text" name="title" id="title" value="<%= editing ? product.title : ''%>">
             </div>
 
             <div class="form-control">
                 <label for="imageUrl">Image url</label>
-                <input type="text" name="imageUrl" id="imageUrl">
+                <input type="text" name="imageUrl" id="imageUrl" value="<%= editing ? product.imageUrl : ''%>">
             </div>
 
             <div class="form-control">
                 <label for="price">Price</label>
-                <input type="number" name="price" id="price" step="0.001S">
+                <input type="number" name="price" id="price" step="0.001S" value="<%= editing ? product.price : ''%>">
             </div>
 
             <div class="form-control">
                 <label for="description">description</label>
-                <textarea name="description" id="description" rows="5"></textarea>
-                <!-- <input type="text" name="description" id="description"> -->
+                <textarea name="description" id="description" rows="5"> <%= editing ? product.description : ''%></textarea>
             </div>
+           
+            <button class="btn" type="submit"><%= editing ? 'Update product' : 'Add product'%></button>
 
-            <button class="btn" type="submit"> <%- editing == true ?  'hh': 'kk' %>Add Product</button>
+     
+            <!-- <button></button> -->
+
         </form>
     </main>
 <%- include('../includes/end.ejs') %>
