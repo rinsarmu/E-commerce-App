@@ -29,13 +29,20 @@ exports.getEditProduct = (req, res, next)=>{
     const editMode = req.query.edit;
     console.log("editMode :", editMode);
     const productId = req.params.productId
+    if(!editMode){
+        return res.redirect('/')
+    }
     Product.findById(productId, product =>{
         console.log(product.description);
         res.render('admin/edit--product', {
             pageTitle: 'Edit Product',
             path: '/admin/edit--product',
-            editing: true,
+            editing: editMode,
             product: product
     })
     })
+}
+
+exports.postEditProduct = (req, res, next)=>{
+
 }

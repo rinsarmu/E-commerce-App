@@ -7,7 +7,7 @@
    <%- include('../includes/navigation.ejs') %>
 
     <main>
-        <form class="product-form" action="/admin/product" method="POST">
+        <form class="product-form" action="/admin/<%= editing ? 'edit-product' : 'product'%>" method="POST">
             <div class="form-control">
                 <label for="title">Title</label>
                 <input type="text" name="title" id="title" value="<%= editing ? product.title : ''%>">
@@ -29,10 +29,6 @@
             </div>
            
             <button class="btn" type="submit"><%= editing ? 'Update product' : 'Add product'%></button>
-
-     
-            <!-- <button></button> -->
-
         </form>
     </main>
 <%- include('../includes/end.ejs') %>
