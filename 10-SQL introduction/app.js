@@ -12,7 +12,14 @@ app.set('views', 'views')
 app.use(bodyparser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public'))) // should be execute on the top unless it's not working
 
-db.execute('Select * from products where ')
+    db.execute('Select * from products')
+    .then(result=>{
+        console.log(result)
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+
 //Routing
 app.use('/admin', adminRoutes)  // add product page and redirect to product page
 app.use(shopRoutes) // Product page
