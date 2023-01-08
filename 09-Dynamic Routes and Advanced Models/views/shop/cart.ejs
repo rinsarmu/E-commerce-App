@@ -24,10 +24,10 @@
                             <p class="product__description"><%=product.productData.description %></p>
                         </div>
                         <div class="card__actions btn__cards">
-                            <a href="/products/<%= product.productData.id%>" class="edit--link">
-                                <button class="btn">Delete</button>
-                                </a>
-                                
+                                <form action="/delete-cart"            method="POST">
+                                    <button class="btn">Delete</button>
+                                    <input type="hidden" name="productId", value="<%=product.productData.id%>">
+                                </form>
                         </div>
                     </article>
                 <% }) %>

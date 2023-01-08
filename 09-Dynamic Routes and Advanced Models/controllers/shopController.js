@@ -70,7 +70,6 @@ exports.getOrders = (req, res, next)=>{
 
     
 }
-
 exports.getCheckOut = (req, res, next)=>{
     Product.fetchAll(products=>{
         res.render('shop/checkout', {
@@ -93,4 +92,13 @@ exports.getCheckOut = (req, res, next)=>{
                product: product,
             })
         })
+    }
+
+    exports.postDeleteCart= (req, res, next)=>{
+        const cartId = req.body.productId
+        Product.findById(cartId, product=>{
+            Cart.updatingProduct(cartId,product.price)
+        })
+        console.log("Post delete cart", cartId);
+        res.redirect('/products')
     }
