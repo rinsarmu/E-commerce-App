@@ -12,7 +12,7 @@ router.get('/products/:productId', shopController.getProduct )  //It should be b
 
 router.get('/cart', shopController.getCart ) 
 router.post('/cart',shopController.postCart)
-router.post('/delete-cart',shopController.postDeleteCart)
+router.post('/cart-delete-items',shopController.postDeleteCart)
 
 router.get('/orders', shopController.getOrders ) 
 

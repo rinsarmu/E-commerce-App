@@ -54,11 +54,11 @@ module.exports = class Product {
       }
 
       static delete(id){
-        console.log("deletehhhhhhhhhhhhhh");
+        // console.log("deletehhhhhhhhhhhhhh");
         getProductFromFile(products=>{
            const updatedProduct = products.filter(prod=>prod.id!= id)
            const product = products.find(prod=>prod.id == id)
-           console.log(product.price);
+        //    console.log(product.price);
            fs.writeFile(p, JSON.stringify(updatedProduct), err=>{
             if(!err){
                 Cart.updatingProduct(id, product.price)

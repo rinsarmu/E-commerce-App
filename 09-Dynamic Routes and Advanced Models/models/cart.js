@@ -17,10 +17,10 @@ module.exports = class Cart{
           
             existingProductIndex = cart.products.findIndex(prod=> prod.id === id)
             existingProduct = cart.products[existingProductIndex]
-                 console.log("Exisitng product");
-                 console.log(existingProduct);
-                 console.log("Exisitng indexproduct");
-                 console.log(existingProductIndex);
+                //  console.log("Exisitng product");
+                //  console.log(existingProduct);
+                //  console.log("Exisitng indexproduct");
+                //  console.log(existingProductIndex);
             
             //Add new product / increase quantity
             
@@ -51,23 +51,23 @@ module.exports = class Cart{
         fs.readFile(p, (err, data)=>{
             let cart = {products: [], totalPrice: 0}
             if(err){
-                console.log("error not found......................");
+                // console.log("error not found......................");
                 return;
             }
             else if(!err){
                 cart = JSON.parse(data)
             
-            console.log("cart updating");
+            // console.log("cart updating");
             const updatedCart = {...cart}
             const product = updatedCart.products.find(prod=>prod.id == id)
-            console.log("pr..................");
-            console.log(product);
-            if(product){
-                 const productQty = product.qty
+            // console.log("pr..................");
+            // console.log(product);
+            if(!product){
+                return;
+            }
+            const productQty = product.qty
              updatedCart.products = cart.products.filter(prod=>prod.id != id)
              updatedCart.totalPrice   =   updatedCart.totalPrice - productPrice *productQty
-            }
-           
 
              fs.writeFile(p, JSON.stringify(updatedCart), err=>{
                 console.log(err);

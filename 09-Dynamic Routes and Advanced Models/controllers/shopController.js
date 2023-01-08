@@ -50,12 +50,12 @@ exports.getCart = (req, res, next)=>{
 exports.postCart = (req, res, next)=>{
     const prodId = req.body.productId
     Product.findById(prodId, (product)=>{
-        console.log("object");
-        console.log("pric : ", product.price);
+        // console.log("object");
+        // console.log("pric : ", product.price);
         Cart.addProduct(prodId, product.price)
 
     })
-    console.log(prodId);
+    // console.log(prodId);
     res.redirect('/cart')
 }
 
@@ -85,7 +85,7 @@ exports.getCheckOut = (req, res, next)=>{
     exports.getProduct = (req, res, next) =>{
         const id = req.params.productId;
         Product.findById(id, product=>{
-            console.log(product);
+            // console.log(product);
             res.render('shop/product--detail', {
                pageTitle: "Detail product",
                path: req.url,
@@ -99,6 +99,6 @@ exports.getCheckOut = (req, res, next)=>{
         Product.findById(cartId, product=>{
             Cart.updatingProduct(cartId,product.price)
         })
-        console.log("Post delete cart", cartId);
-        res.redirect('/products')
+        // console.log("Post delete cart", cartId);
+        res.redirect('/cart')
     }

@@ -24,7 +24,7 @@
                             <p class="product__description"><%=product.productData.description %></p>
                         </div>
                         <div class="card__actions btn__cards">
-                                <form action="/delete-cart"            method="POST">
+                                <form action="/cart-delete-items"            method="POST">
                                     <button class="btn">Delete</button>
                                     <input type="hidden" name="productId", value="<%=product.productData.id%>">
                                 </form>
