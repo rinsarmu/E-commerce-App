@@ -51,11 +51,12 @@ module.exports = class Cart{
         fs.readFile(p, (err, data)=>{
             let cart = {products: [], totalPrice: 0}
             if(err){
+                console.log("error not found......................");
                 return;
             }
             else if(!err){
                 cart = JSON.parse(data)
-            }
+            
             console.log("cart updating");
             const updatedCart = {...cart}
             const product = updatedCart.products.find(prod=>prod.id == id)
@@ -66,6 +67,7 @@ module.exports = class Cart{
              fs.writeFile(p, JSON.stringify(updatedCart), err=>{
                 console.log(err);
             })
+        }
          
          })
   }
