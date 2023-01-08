@@ -1,0 +1,38 @@
+What's DB?
+collection of related information stored in different ways.
+like phone contact, my 5 best friends, comment section of the videos
+ COMPUTERS ARE GREAT FOT STORING DATABASES
+
+DATABASE MANAGEMENT SYSTEMS(DBMS)
+A special software progra, that help users create abd maintain a databese.
+    - makes it easy to mangae large amounts of information
+    - Handles securitya nd backups
+    - importing/ exporting data
+    - concurrency
+    - interacts with software applications
+        * Programming Languages
+
+# many times we interact with DBMS to create, read, update and delete information
+
+   C     R     U       D 
+Create  Read  Update  Delete
+
+# two types og Datatypes
+1. Relational databases(sql)
+    - organize data into one or more tables
+    = each table had columns and rows
+    = a unique key identifies each rows
+
+2. Non-Relational(noSQL)
+organize data is anaything but a traditional table.
+    = key-value stores
+    = documents(JSON, XML, etc)
+    = Graphs, FLexible Tables
+
+# SQL  - Structured Query Language
+        - Standardized language for intaeracting with RDBMS
+#Database QUerries -
+        Queries are requests made to the database management system for s[exific information
+        
+        as the database's structure become more and more complex, it becomes more difficult to get the specifci pieces of information we want.
+        A google search is a Query.
