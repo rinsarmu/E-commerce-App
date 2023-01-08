@@ -1,6 +1,7 @@
 // const products = [];
 
 const Product = require('../models/product')
+
 exports.getAddProduct = (req, res, next)=>{
     res.render('admin/edit--product', {pageTitle: "Add Product",
     editing: false, path: req.url})   
@@ -8,18 +9,19 @@ exports.getAddProduct = (req, res, next)=>{
 
 exports.postAddProduct = (req, res, next)=>{
     const {title,description,price, imageUrl} = req.body
-    const product = new Product(title, description, price, imageUrl);
+    const product = new Product(null, title, description, price, imageUrl);
+    console.log(product);
     product.save()
     res.redirect('/') 
 }
 
 exports.getProduct = (req, res, next)=>{   
-    Product.fetchAll(products=>{
+  return  Product.fetchAll(products=>{
        res.render('admin/products', {
            pageTitle: 'Admin Products',
            prods: products,
            hasProduct: products.length > 0,
-           path : req.url
+           path : '/admin/products'
        })
    })
  
@@ -27,13 +29,12 @@ exports.getProduct = (req, res, next)=>{
 
 exports.getEditProduct = (req, res, next)=>{
     const editMode = req.query.edit;
-    console.log("editMode :", editMode);
     const productId = req.params.productId
+    console.log("Edit Id: ",productId);
     if(!editMode){
         return res.redirect('/')
     }
     Product.findById(productId, product =>{
-        console.log(product.description);
         res.render('admin/edit--product', {
             pageTitle: 'Edit Product',
             path: '/admin/edit--product',
@@ -44,5 +45,16 @@ exports.getEditProduct = (req, res, next)=>{
 }
 
 exports.postEditProduct = (req, res, next)=>{
+    const{id, price, title, description, imageUrl} = req.body;
+    const updatedProduct = new Product(id, title, description, price, imageUrl)
+    console.log(id);
+    console.log(updatedProduct);
+    updatedProduct.save();
+    res.redirect('/admin/products')
+}
 
+exports.postDeleteProduct = (req,res, next)=>{
+    const id=req.params.productId
+        Product.delete(id)
+    res.redirect('/admin/product')
 }

@@ -29,6 +29,7 @@
             </div>
            
             <button class="btn" type="submit"><%= editing ? 'Update product' : 'Add product'%></button>
+            <input type="hidden" name="id" value="<%= editing ? product.id : ' '%>">
         </form>
     </main>
 <%- include('../includes/end.ejs') %>
