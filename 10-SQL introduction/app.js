@@ -14,7 +14,7 @@ app.use(express.static(path.join(__dirname, 'public'))) // should be execute on 
 
     db.execute('Select * from products')
     .then(result=>{
-        console.log(result)
+        console.log(result[0])
     })
     .catch(err=>{
         console.log(err)

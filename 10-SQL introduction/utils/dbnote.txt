@@ -176,6 +176,7 @@ CREATING COMPANY DATABASE
 
         CREATE TABLE  employee ( emp_id INT PRIMARY KEY, first_name VARCHAR(255) NOT NULL,last_name VARCHAR(255) NOT NULL, birth_date DATE, sex VARCHAR(10), salary INT, super_id INT, branch_id INT );
         
+        insert into employee values(1, 'Robera', 'Insarmu', '9 Jan 2000', 'M', 30000, 1, 2);
         MOdiification
         ALTER TABLE employee
         ADD FOREIGN KEY (branch_id)
@@ -193,4 +194,19 @@ CREATING COMPANY DATABASE
 c. CLIENT TABLE
          CREATE TABLE client ( client_id INT PRIMARY KEY, client_name varchar(255), branch_id INT, FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE set NULL);
 
+d.  works_with table
+Create Table works_with (emp_id INT, client_id INt, total_sales INT, PRIMARY KEY(emp_id, client_id), FOREIGN KEY(emp_id) REFERENCES employee(emp_id) ON DELETE CASCADE, FOREIGN KEY(client_id) REFERENCES client(client_id) ON DELETE CASCADE);
 
+
+ e. Branch Supplieer table
+     CREATE TABLE branch_supplier( branch_id INT, supplier_name VARCHAR(255), supply_type VARCHAR(40), PRIMARY KEY(branch_id, supplier_name), FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL);
+
+         CREATE TABLE branch_supplier ( branch_id INT , supplier_name varchar(255),supply_type varchar(255), PRIMARY KEY(branch_id, supplier_name), FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE CASCADE);
+
+// Inserting data od the COMPANY
+Insert into employee(emp_id, first_name, last_name, birth_date, sex,salary,) values(100, 'David', 'Wallace', '1967-11-17', 'M', '250,000');
+
+===============================================
+    create table products(id int Primary Key Auto_Increment Not NULL,title varchar(255),description text, price double not null, imageUrl varchar(255));
+
+    insert into products(title, description, price, imageUrl) value('SHose', 'awesome convers', 111, 'shose.jpg');
