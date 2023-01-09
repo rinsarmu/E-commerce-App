@@ -90,15 +90,19 @@ exports.getCheckOut = (req, res, next)=>{
 
       
     exports.getProduct = (req, res, next) =>{
-        const id = req.params.productId;
-        Product.findById(id, product=>{
-            // console.log(product);
-            res.render('shop/product--detail', {
-               pageTitle: "Detail product",
-               path: req.url,
-               product: product,
-            })
+        const id = req.params.productId;s
+        Product.findById(id)
+        .then(([rows, fieldData])=>{
+            console.log(rows[0].title);
+           return res.render('shop/product--detail', {
+                pageTitle: "Detail product",
+                path: req.url,
+                product: rows[0]
+             })
         })
+        .catch(err=>console.log(err));
+
+        
     }
 
     exports.postDeleteCart= (req, res, next)=>{
