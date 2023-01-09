@@ -16,14 +16,21 @@ exports.getProducts = (req, res, next)=>{
 }
 
 exports.getIndex = (req, res, next)=>{
-    Product.fetchAll(products=>{
-        res.render('shop/index', {
-            pageTitle: 'Product',
-            prods: products,
-            hasProduct: products.length > 0,
+    Product.fetchAll()
+    .then(([rows, fieldData])=>{
+        console.log(rows);
+     
+        res.render('shop/product--list', {
+            pageTitle: 'All Product',
+            prods: rows,
+            hasProduct: rows.length > 0,
             path : '/'
         })
-    }) 
+        
+
+
+    })
+    .catch((err)=>{console.log(err)})
 }
 
 exports.getCart = (req, res, next)=>{

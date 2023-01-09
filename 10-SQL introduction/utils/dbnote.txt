@@ -210,3 +210,8 @@ Insert into employee(emp_id, first_name, last_name, birth_date, sex,salary,) val
     create table products(id int Primary Key Auto_Increment Not NULL,title varchar(255),description text, price double not null, imageUrl varchar(255));
 
     insert into products(title, description, price, imageUrl) value('SHose', 'awesome convers', 111, 'shose.jpg');
+
+
+    // TO UPDATE AND INSERTING CERTAIN DATA...
+    update databaseName.tableName set columnTOBeUpdatedName = valuetoBeSet consition like where
+    update Product.products set price = '44' where id = 1;
