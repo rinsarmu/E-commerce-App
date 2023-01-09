@@ -18,14 +18,18 @@ exports.postAddProduct = (req, res, next)=>{
 }
 
 exports.getProduct = (req, res, next)=>{   
-  return  Product.fetchAll(products=>{
+  Product.fetchAll()
+  .then(([rows, fieldData])=>{
+    console.log("+++++++++++++++++++++++++++++++++++");
+    console.log(rows);
        res.render('admin/products', {
            pageTitle: 'Admin Products',
-           prods: products,
-           hasProduct: products.length > 0,
+           prods: rows,
+           hasProduct: rows.length > 0,
            path : '/admin/products'
        })
    })
+   .catch(err=> console.log(err))
  
 }
 
@@ -57,6 +61,6 @@ exports.postEditProduct = (req, res, next)=>{
 
 exports.postDeleteProduct = (req,res, next)=>{
     const id=req.body.productId
-        Product.delete(id)
+        Product.delete(id).then(()=>{}).catch(err=>console.log('erro'))
     res.redirect('/admin/products')
 }
