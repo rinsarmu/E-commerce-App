@@ -110,6 +110,5 @@ exports.getCheckOut = (req, res, next)=>{
         Product.findById(cartId, product=>{
             Cart.updatingProduct(cartId,product.price)
         })
-        // console.log("Post delete cart", cartId);
         res.redirect('/cart')
     }

@@ -20,7 +20,8 @@ module.exports = class Product {
     }
 
     static delete(id){
-     return db.execute('Drop from products where id= ?',[id])
+      console.log("ID............", id);
+     return db.execute('Delete from products where id= ?',[id])
      
    }
    
