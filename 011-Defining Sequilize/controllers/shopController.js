@@ -87,18 +87,30 @@ exports.getCheckOut = (req, res, next)=>{
 
 
       
-    exports.getProduct = (req, res, next) =>{
-        const id = req.params.productId;s
-        Product.findById(id)
-        .then(([rows, fieldData])=>{
-            console.log(rows[0].title);
-           return res.render('shop/product--detail', {
-                pageTitle: "Detail product",
+ exports.getProduct = (req, res, next) =>{
+        const prodId = req.params.productId;
+        console.log("dddd", prodId);
+        Product.findAll({where: {id:prodId}})
+        .then(products=>{
+            res.render('shop/product--detail',{
+                pageTitle: "Product Detail",
                 path: req.url,
-                product: rows[0]
-             })
+                product: products[0]
+
+            })
+
         })
-        .catch(err=>console.log(err));
+        .catch(err=>console.log(err))
+        // Product.findById()
+        // .then(rows=>{
+        //     console.log(rows[0].title);
+        //    return res.render('shop/product--detail', {
+        //         pageTitle: "Detail product",
+        //         path: req.url,
+        //         product: rows[0]
+        //      })
+        // })
+        // .catch(err=>console.log(err));
 
         
     }

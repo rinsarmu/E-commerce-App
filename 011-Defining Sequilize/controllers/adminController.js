@@ -20,6 +20,7 @@ exports.postAddProduct = (req, res, next)=>{
     })
     .then((result)=>{
         console.log("Saved!");
+        res.redirect('/')
     })
     .catch(()=>{console.log(err)})
     
