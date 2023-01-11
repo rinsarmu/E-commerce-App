@@ -2,35 +2,33 @@
 
 const Product = require('../models/product')
 const Cart = require('../models/cart')
+const e = require('express')
 
 exports.getProducts = (req, res, next)=>{
         
-    Product.fetchAll(products=>{
-       res.render('shop/product--list', {
-           pageTitle: 'All Product',
-           prods: products,
-           hasProduct: products.length > 0,
-           path : req.url
-       })
-   }) 
+    Product.findAll()
+    .then(products=>{
+        res.render('shop/product--list', {
+            pageTitle: 'All Product',
+            prods: products,
+            hasProduct: products.length > 0,
+            path : req.url
+        })
+    }).catch(err=>console.log(err))
+ 
 }
 
 exports.getIndex = (req, res, next)=>{
-    Product.fetchAll()
-    .then(([rows, fieldData])=>{
-        console.log(rows);
-     
+    Product.findAll()
+    .then(products=>{
         res.render('shop/product--list', {
             pageTitle: 'All Product',
-            prods: rows,
-            hasProduct: rows.length > 0,
+            prods: products,
+            hasProduct: products.length > 0,
             path : '/'
         })
-        
-
-
     })
-    .catch((err)=>{console.log(err)})
+    .catch(err=>console.log(err))
 }
 
 exports.getCart = (req, res, next)=>{
