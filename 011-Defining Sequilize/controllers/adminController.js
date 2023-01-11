@@ -19,7 +19,7 @@ exports.postAddProduct = (req, res, next)=>{
         imageUrl: imageUrl
     })
     .then((result)=>{
-        console.log(result);
+        console.log("Saved!");
     })
     .catch(()=>{console.log(err)})
     
