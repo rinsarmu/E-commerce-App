@@ -21,7 +21,7 @@ app.use(notFound) // If page is not found ..
 
 sequelize.sync()
 .then((result)=>{
-    console.log(result);
+    // console.log(result);
     app.listen(8000)
 
 

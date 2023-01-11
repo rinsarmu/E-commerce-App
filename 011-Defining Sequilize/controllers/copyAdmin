@@ -1,8 +1,7 @@
 // const products = [];
 
+// const Product = require('../models/product')
 const Product = require('../models/product')
-// const Prct = require('../models/product')
-// const {Product} = require('../models/product')
 exports.getAddProduct = (req, res, next)=>{
     res.render('admin/edit--product', {pageTitle: "Add Product",
     editing: false, path: req.url})   
@@ -11,17 +10,17 @@ exports.getAddProduct = (req, res, next)=>{
 exports.postAddProduct = (req, res, next)=>{
     const {title,description,price, imageUrl} = req.body
     const product = new Product(title, description, price, imageUrl);
-   
-    Product.create({
-        title: title,
-        description: description,
-        price:price,
-        imageUrl: imageUrl
-    })
-    .then((result)=>{
-        console.log(result);
-    })
-    .catch(()=>{console.log(err)})
+    
+Product.Create({
+    title: title,
+    description: description,
+    price:price,
+    imageUrl: imageUrl
+})
+.then((result)=>{
+    console.log(result);
+})
+.catch(()=>{console.log(err)})
     
 }
 
