@@ -1,0 +1,217 @@
+What's DB?
+collection of related information stored in different ways.
+like phone contact, my 5 best friends, comment section of the videos
+ COMPUTERS ARE GREAT FOT STORING DATABASES
+
+DATABASE MANAGEMENT SYSTEMS(DBMS)
+A special software progra, that help users create abd maintain a databese.
+    - makes it easy to mangae large amounts of information
+    - Handles securitya nd backups
+    - importing/ exporting data
+    - concurrency
+    - interacts with software applications
+        * Programming Languages
+
+# many times we interact with DBMS to create, read, update and delete information
+
+   C     R     U       D 
+Create  Read  Update  Delete
+
+# two types og Datatypes
+1. Relational databases(sql)
+    - organize data into one or more tables
+    = each table had columns and rows
+    = a unique key identifies each rows
+
+2. Non-Relational(noSQL)
+organize data is anaything but a traditional table.
+    = key-value stores
+    = documents(JSON, XML, etc)
+    = Graphs, FLexible Tables
+
+# SQL  - Structured Query Language
+        - Standardized language for intaeracting with RDBMS
+#Database QUerries -
+        Queries are requests made to the database management system for s[exific information
+        
+        as the database's structure become more and more complex, it becomes more difficult to get the specifci pieces of information we want.
+        A google search is a Query.
+
+
+RELATIONAL DATABASES
+1. KEYS AND VALUES
+    Table have two things(Column and rows)
+    Columns: vertical
+        define single attribute. eg name, 
+        single entry
+    Rows: horizontal
+         individual entry of the data
+         PK defined the rows
+         PK always unique on each rows
+
+FK- Foreign key
+    Help us to connect another table in DB
+    they store PK on anothet Table
+
+SQL - sTRUCTURES QUERY Language
+    SQL is a language used for interactinf wit Relational Database management SYSTEMS(RDMS)
+    you can use SQL to get the RDBMS to do things for you.
+        - create, retrieve, update $ dlete data
+        - create and manage databases- Design and create database tables
+        - PErform adnimistrations tasts(security, user management, import / export, etc)
+        SQL implementations vary between sytems
+        SQL is ahybrid language, it's badically 4 types of languages in one 
+        a. Data query Language(DQL)
+            - used to query the databse for information- fet infrmation that laready stored there
+        b. Data Definition Language(DDL)
+        - used for definition daatabase schema
+        c. Data Control Language(DCL)
+        - used for controlling access to the data in the database
+        - user and permisions management
+        d. Data manipulation language(DML)
+        used for inserting , updating and deelting data form the databases
+
+#Queries
+set of instructions given to the RDBMS that tell the RDBMS what information you want it to retrieve for you. 
+Goal is to only get the data you need . Eg. Select employee.name form employee where employee.salary > 3000
+
+we can create table using create table tablename(columnName datatype(size));
+we can delete table using Drop table tablename;
+to modify the table ny adding another column:
+    alter table tableName add columnName datatype;
+to delete specific column:
+     alter table tableName drop column columnName;
+
+Example:
+    CREATE TABLE student(student_id INT, name VARCHAR(255) NOT NULL, major VARCHAR(255) NOT NULL, PRIMARY KEY(student_id));
+    DROP:- drop table student;
+    Modify: alter table student add gpa decimal(3,2);
+    Delete gpa: alter table student drop column gpa;
+Inserting data to the database
+insert into student values(1, 'Jack' 'c++');
+insert into student values(2, 'Katie' 'Sociology');
+insert into student values(3, 'Clarie' 'Chemistry');
+
+TO make id increase auot we use keyword AUTO_INCREMENT;
+
+select * from student;
+
+* to insert into specific column
+    insert into student(student_id, name) values (3, 'katie');
+  CREATE TABLE student(student_id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, major VARCHAR(255) NOT NULL, PRIMARY KEY(student_id));
+insert into student(name, major) values( 'Katie' ,'Sociology');
+insert into student(name, major) value( 'Clarie', 'Chemistry');
+insert into student(name, major) value( 'Robera', 'java');
+insert into student(name, major) value( 'Net', 'Biology');
+
+insert into student(name, major) value( 'Natty', 'java');
+
+
+
+UPDATE AND DELETE
+UPDATE student
+SET major = 'Bio'
+where major = 'Biology';
+or
+UPDATE student
+set major = 'Full stack'
+where major= 'FRONTEND' or major='java';
+
+// to update multi data
+UPDATE student
+SET name= 'Robera', major = 'Full stack Developer'
+where student_id = 2;
+
+to update specific column of te rows
+update student 
+set major = 'unknown';
+
+DELETE:
+DELETE from student; // delete all rows from student.
+
+Delete from student
+where student_id = 3; // delete all information o student with id 3
+
+Basic Queries
+    Select * 
+    from student; //all information on each table
+
+    select columnName
+    from student;
+
+    select name 
+    from student;
+
+    we can say;
+    select student.name, student.major from student;
+
+    To make in sort way;;
+    select student.name, student.major from student order by name; // y default this is ascending order. to make ut descending order
+
+     select student.name, student.major from student order by name DESC; 
+     select * from student where major = 'Biology';
+     select * from student where major = 'Biology' or major = 'Java';
+
+     <> means not equal (!=)
+     select * from student where major <>'Biology';
+
+     rather than using nested or
+     select * from student where major IN('Biology', 'java');
+     select * from student where major IN('Biology', 'java') AND student_id > 2;
+
+
+
+
+
+
+
+
+
+logical;
+
+
+CREATING COMPANY DATABASE
+
+ a.   Employee table
+
+        CREATE TABLE  employee ( emp_id INT PRIMARY KEY, first_name VARCHAR(255) NOT NULL,last_name VARCHAR(255) NOT NULL, birth_date DATE, sex VARCHAR(10), salary INT, super_id INT, branch_id INT );
+        
+        insert into employee values(1, 'Robera', 'Insarmu', '9 Jan 2000', 'M', 30000, 1, 2);
+        MOdiification
+        ALTER TABLE employee
+        ADD FOREIGN KEY (branch_id)
+        REFERENCES branch(branch_id)
+        ON DELETE SET NULL;
+
+        ALTER TABLE employee
+        ADD FOREIGN KEY (super_id)
+        REFERENCES employee(emp_id)
+        ON DELETE SET NULL;
+
+ b. branch table
+    CREATE TABLE branch ( branch_id INT PRIMARY KEY, branch_name varchar(255), mgr_id INT, mgr_start_date DATE, FOREIGN KEY(mgr_id) REFERENCES employee(emp_id) ON DELETE set NULL);
+
+c. CLIENT TABLE
+         CREATE TABLE client ( client_id INT PRIMARY KEY, client_name varchar(255), branch_id INT, FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE set NULL);
+
+d.  works_with table
+Create Table works_with (emp_id INT, client_id INt, total_sales INT, PRIMARY KEY(emp_id, client_id), FOREIGN KEY(emp_id) REFERENCES employee(emp_id) ON DELETE CASCADE, FOREIGN KEY(client_id) REFERENCES client(client_id) ON DELETE CASCADE);
+
+
+ e. Branch Supplieer table
+     CREATE TABLE branch_supplier( branch_id INT, supplier_name VARCHAR(255), supply_type VARCHAR(40), PRIMARY KEY(branch_id, supplier_name), FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE SET NULL);
+
+         CREATE TABLE branch_supplier ( branch_id INT , supplier_name varchar(255),supply_type varchar(255), PRIMARY KEY(branch_id, supplier_name), FOREIGN KEY(branch_id) REFERENCES branch(branch_id) ON DELETE CASCADE);
+
+// Inserting data od the COMPANY
+Insert into employee(emp_id, first_name, last_name, birth_date, sex,salary,) values(100, 'David', 'Wallace', '1967-11-17', 'M', '250,000');
+
+===============================================
+    create table products(id int Primary Key Auto_Increment Not NULL,title varchar(255),description text, price double not null, imageUrl varchar(255));
+
+    insert into products(title, description, price, imageUrl) value('SHose', 'awesome convers', 111, 'shose.jpg');
+
+
+    // TO UPDATE AND INSERTING CERTAIN DATA...
+    update databaseName.tableName set columnTOBeUpdatedName = valuetoBeSet consition like where
+    update Product.products set price = '44' where id = 1;
