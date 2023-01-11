@@ -47,13 +47,24 @@ exports.getEditProduct = (req, res, next)=>{
         return res.redirect('/admin/products')
     }
 
-    Product.findAll({where: {id:productId}})
+    // Product.findAll({where: {id:productId}})
+    // .then(product=>{
+    //     res.render('admin/edit--product', {
+    //         pageTitle: 'Edit Product',
+    //         path: '/admin/edit--product',
+    //         editing: editMode,
+    //         product: product[0]
+    // })
+    // })
+    // .catch(err=>console.log(err))
+
+    Product.findByPk(productId)
     .then(product=>{
         res.render('admin/edit--product', {
             pageTitle: 'Edit Product',
             path: '/admin/edit--product',
             editing: editMode,
-            product: product[0]
+            product: product
     })
     })
     .catch(err=>console.log(err))
