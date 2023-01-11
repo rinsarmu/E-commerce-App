@@ -4,7 +4,7 @@ const adminRoutes = require("./routes/admin")
 const shopRoutes = require('./routes/shop')
 const notFound = require('./routes/404')
 const path = require("path")
-const db = require('./utils/database')
+const sequelize = require('./utils/database')
 
 const app = express()
 app.set('view engine', 'ejs')
@@ -19,5 +19,14 @@ app.use('/admin', adminRoutes)  // add product page and redirect to product page
 app.use(shopRoutes) // Product page
 app.use(notFound) // If page is not found ..
 
+sequelize.sync()
+.then((result)=>{
+    console.log(result);
+    app.listen(8000)
 
-app.listen(8000)
+
+})
+.catch(()=>{
+    console.log("erro line 27");
+})
+
