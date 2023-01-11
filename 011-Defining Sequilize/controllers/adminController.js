@@ -27,18 +27,15 @@ exports.postAddProduct = (req, res, next)=>{
 }
 
 exports.getProduct = (req, res, next)=>{   
-  Product.fetchAll()
-  .then(([rows, fieldData])=>{
-    console.log("+++++++++++++++++++++++++++++++++++");
-    console.log(rows);
-       res.render('admin/products', {
-           pageTitle: 'Admin Products',
-           prods: rows,
-           hasProduct: rows.length > 0,
-           path : '/admin/products'
-       })
-   })
-   .catch(err=> console.log(err))
+    Product.findAll().then(products=>{
+        res.render('admin/products', {
+            pageTitle: 'Admin Products',
+            prods: products,
+            hasProduct: products.length > 0,
+            path : '/admin/products'
+        })
+    }).catch(err=>console.log(err))
+
  
 }
 
@@ -49,21 +46,23 @@ exports.getEditProduct = (req, res, next)=>{
     if(!editMode){
         return res.redirect('/admin/products')
     }
-    Product.findById(productId, product =>{
+
+    Product.findAll({where: {id:productId}})
+    .then(product=>{
         res.render('admin/edit--product', {
             pageTitle: 'Edit Product',
             path: '/admin/edit--product',
             editing: editMode,
-            product: product
+            product: product[0]
     })
     })
+    .catch(err=>console.log(err))
+
 }
 
 exports.postEditProduct = (req, res, next)=>{
     const{id, price, title, description, imageUrl} = req.body;
     const updatedProduct = new Product(id, title, description, price, imageUrl)
-    // console.log(id);
-    // console.log(updatedProduct);
     updatedProduct.save();
     res.redirect('/admin/products')
 }
