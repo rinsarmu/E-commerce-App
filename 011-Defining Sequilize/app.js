@@ -8,7 +8,8 @@ const sequelize = require('./utils/database')
 const Product = require("./models/product")
 const User = require("./models/user")
 
-
+const Cart = require('./models/cart')
+const CartItems = require('./models/cartItem')
 
 const app = express()
 app.set('view engine', 'ejs')
@@ -35,9 +36,15 @@ app.use(notFound) // If page is not found ..
 Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
 User.hasMany(Product)
 
+User.hasOne(Cart)
+Cart.belongsTo(User)
+Cart.belongsToMany(Product, {through: CartItems});
+Product.belongsToMany(Cart, {through: CartItems});
+
+
 sequelize
-// .sync( {force:true})
-.sync( )
+.sync( {force:true})
+// .sync( )
 .then((result)=>{
     return User.findByPk(1)
     // console.log(result);
@@ -56,7 +63,8 @@ sequelize
     app.listen(8000)
 
 })
-.catch(()=>{
+.catch((err)=>{
     console.log("erro line 27");
+    console.log(err);
 })
 
