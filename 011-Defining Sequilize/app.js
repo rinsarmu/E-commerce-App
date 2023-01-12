@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public'))) // should be execute on 
 app.use((req, res, next)=>[
     User.findByPk(1)
     .then(user=>{
-        console.log("-----------------------\n", user , "\n-----------------------\n");
+        // console.log("-----------------------\n", user , "\n-----------------------\n");
         req.user = user
         next();
     }).
@@ -51,8 +51,8 @@ sequelize
     return user;
 })
 .then(user=>{
-    console.log(user);
-    console.log("\n \n User created \n");
+    // console.log(user);
+    // console.log("\n \n User created \n");
     app.listen(8000)
 
 })
