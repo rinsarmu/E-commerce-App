@@ -5,6 +5,10 @@ const shopRoutes = require('./routes/shop')
 const notFound = require('./routes/404')
 const path = require("path")
 const sequelize = require('./utils/database')
+const Product = require("./models/product")
+const User = require("./models/user")
+
+
 
 const app = express()
 app.set('view engine', 'ejs')
@@ -19,11 +23,28 @@ app.use('/admin', adminRoutes)  // add product page and redirect to product page
 app.use(shopRoutes) // Product page
 app.use(notFound) // If page is not found ..
 
-sequelize.sync()
-.then((result)=>{
-    // console.log(result);
-    app.listen(8000)
+Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
+// User.hasMany(Product)
 
+sequelize
+// .sync( {force:true})
+.sync( )
+.then((result)=>{
+    return User.findByPk(1)
+    // console.log(result);
+    
+    
+})
+.then(user=>{
+    if(!user) {
+        User.create({name: "Roba", email: "roba@gmail.com"})
+    }
+    return user;
+})
+.then(user=>{
+    console.log(user);
+    console.log("\n \n User created \n");
+    app.listen(8000)
 
 })
 .catch(()=>{
