@@ -16,6 +16,15 @@ app.set('views', 'views')
 app.use(bodyparser.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public'))) // should be execute on the top unless it's not working
 
+app.use((req, res, next)=>[
+    User.findByPk(1)
+    .then(user=>{
+        console.log("-----------------------\n", user , "\n-----------------------\n");
+        req.user = user
+        next();
+    }).
+    catch(err=>console.log(err))
+])
  
 
 //Routing
@@ -24,7 +33,7 @@ app.use(shopRoutes) // Product page
 app.use(notFound) // If page is not found ..
 
 Product.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
-// User.hasMany(Product)
+User.hasMany(Product)
 
 sequelize
 // .sync( {force:true})

@@ -1,6 +1,7 @@
 // const products = [];
 
 const Product = require('../models/product')
+const User = require('../models/user')
 // const Prct = require('../models/product')
 // const {Product} = require('../models/product')
 exports.getAddProduct = (req, res, next)=>{
@@ -12,12 +13,20 @@ exports.postAddProduct = (req, res, next)=>{
     const {title,description,price, imageUrl} = req.body
     const product = new Product(title, description, price, imageUrl);
    
-    Product.create({
+    //sequilize magic creating product
+    req.user.createProduct({
         title: title,
-        description: description,
-        price:price,
-        imageUrl: imageUrl
+            description: description,
+            price:price,
+            imageUrl: imageUrl,
     })
+    // Product.create({
+    //     title: title,
+    //     description: description,
+    //     price:price,
+    //     imageUrl: imageUrl,
+    //     userId:req.user.id
+    // })
     .then((result)=>{
         console.log("Saved!");
         res.redirect('/admin/products')
