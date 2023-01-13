@@ -51,14 +51,38 @@ exports.getCart = (req, res, next)=>{
 }
 
 exports.postCart = (req, res, next)=>{
-    // const prodId = req.body.productId
-    // Product.findById(prodId, (product)=>{
-    //     // console.log("object");
-    //     // console.log("pric : ", product.price);
-    //     Cart.addProduct(prodId, product.price)
+    const prodId = req.body.productId
+    let fetchCart;
+    req.user.getCart()
+    .then(cart=>{
+        fetchCart = cart;
+        return cart.getProduct({where: {id: prodId}})
 
-    // })
-    // console.log(prodId);
+    })
+    .then(products=>{
+        let product;
+
+        if(products.length> 0) {
+            product = products[0]
+        } 
+
+        let newQuantity = 1;
+        if(product) {
+            //....
+
+        }
+        Product.findByPk(prodId)
+        .then(product =>{
+            return fetchCart.addProduct(product, {through: {quantity: newQuantity}})
+
+        })
+        .catch(err=>console.log(err))
+
+    })
+    .then(()=>{
+        res.redirect('/cart')
+    })
+    .catch(err=>console.log(err))
     res.redirect('/cart')
 }
 
