@@ -32,34 +32,32 @@ exports.getIndex = (req, res, next)=>{
 }
 
 exports.getCart = (req, res, next)=>{
-    Cart.getCart(carts=>{
+    console.log("cart is cclicked");
 
-        Product.fetchAll(products=>{
-            const cartProducts = [];
-            for(const product of products){
-                const cartProductData = carts.products.find(prod => prod.id ===product.id)
-                if(cartProductData) {
-                    cartProducts.push({productData: product, qty: cartProductData.qty})
-                }
-            }
-            res.render('shop/cart', {
-                pageTitle: 'Cart',
-                hasProduct: products.length > 0,
-                path : req.url,
-                products: cartProducts
-            })
-        }) 
-    })
+    req.user.getCart().then(cart=>{
+        console.log(cart);
+      return  cart.
+      getProducts()
+      .then(products=>{
+        res.render("shop/cart", {
+            pageTitle: 'Cart',
+            hasProduct: products.length > 0,
+            path : req.url,
+            products: products
+        })
+      }).catch(err=>console.log(err))
+    }).catch(err=>console.log(err))
+
 }
 
 exports.postCart = (req, res, next)=>{
-    const prodId = req.body.productId
-    Product.findById(prodId, (product)=>{
-        // console.log("object");
-        // console.log("pric : ", product.price);
-        Cart.addProduct(prodId, product.price)
+    // const prodId = req.body.productId
+    // Product.findById(prodId, (product)=>{
+    //     // console.log("object");
+    //     // console.log("pric : ", product.price);
+    //     Cart.addProduct(prodId, product.price)
 
-    })
+    // })
     // console.log(prodId);
     res.redirect('/cart')
 }

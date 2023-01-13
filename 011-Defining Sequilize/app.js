@@ -53,14 +53,19 @@ sequelize
 })
 .then(user=>{
     if(!user) {
+        //creating a user if it is not exist
         User.create({name: "Roba", email: "roba@gmail.com"})
     }
     return user;
 })
 .then(user=>{
-    
-    app.listen(8000)
+    // creating a cart for the given users.
+    return user.createCart();
 
+})
+.then(cart=>{
+    return app.listen(8000)
+     
 })
 .catch((err)=>{
     console.log("erro line 27");
