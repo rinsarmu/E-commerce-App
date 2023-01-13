@@ -123,7 +123,7 @@ exports.postCart = (req, res, next) => {
         if (products.length > 0) {
           product = products[0];
         }
-  console.log("\n\n------------------------------\n", product.cartItems.quantity);
+
         if (product) {
           const oldQuantity = product.cartItems.quantity;
           newQuantity = oldQuantity + 1;
