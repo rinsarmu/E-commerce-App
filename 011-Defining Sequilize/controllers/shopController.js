@@ -31,63 +31,7 @@ exports.getIndex = (req, res, next)=>{
     .catch(err=>console.log(err))
 }
 
-// exports.getCart = (req, res, next)=>{
-//     console.log("cart is cclicked");
 
-//     req.user.getCart().then(cart=>{
-//         console.log(cart);
-//       return  cart.
-//       getProducts()
-//       .then(products=>{
-//         res.render("shop/cart", {
-//             pageTitle: 'Cart',
-//             hasProduct: products.length > 0,
-//             path : req.url,
-//             products: products
-//         })
-//       }).catch(err=>console.log(err))
-//     }).catch(err=>console.log(err))
-
-// }
-
-// exports.postCart = (req, res, next)=>{
-//     const prodId = req.body.productId
-//     let fetchCart;
-//     req.user.getCart()
-//     .then(cart=>{
-//         fetchCart = cart;
-//         return cart.getProduct({where: {id: prodId}})
-
-//     })
-//     .then(products=>{
-//         let product;
-
-//         if(products.length> 0) {
-//             product = products[0]
-//         } 
-
-//         let newQuantity = 1;
-//         if(product) {
-//             const oldQuantity = product.cartItems.quantity;
-//             newQuantity = oldQuantity + 1;
-//             return fetchCart.addProduct(product, {through : {quantity: newQuantity}})
-//             //....
-
-//         }
-//         Product.findByPk(prodId)
-//         .then(product =>{
-//             return fetchCart.addProduct(product, {through: {quantity: newQuantity}})
-
-//         })
-//         .catch(err=>console.log(err))
-
-//     })
-//     .then(()=>{
-//         res.redirect('/cart')
-//     })
-//     .catch(err=>console.log(err))
-//     res.redirect('/cart')
-// }
 exports.getCart = (req, res, next) => {
   req.user
     .getCart()
@@ -147,6 +91,17 @@ exports.postCart = (req, res, next) => {
       .catch(err => console.log(err));
   };
   
+  exports.postOrder = (req,res,next)=>{
+req.user.getCart()
+.then(cart=>{
+  return cart.getProducts();
+})
+.then(products=>{
+  console.log(products);
+})
+
+    res.redirect('/')
+  }
 
 exports.getOrders = (req, res, next)=>{
     Product.fetchAll(products=>{
@@ -156,9 +111,10 @@ exports.getOrders = (req, res, next)=>{
             path : req.url
         })
     }) 
-
     
 }
+
+
 exports.getCheckOut = (req, res, next)=>{
     Product.fetchAll(products=>{
         res.render('shop/checkout', {
@@ -204,3 +160,4 @@ exports.getCheckOut = (req, res, next)=>{
           .catch(err=>console.log(err))
   
     }
+

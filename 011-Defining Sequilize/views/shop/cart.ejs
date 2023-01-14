@@ -19,6 +19,11 @@
                     </li>
                 <% }) %>
             </ul>
+           <div class="centered order">
+            <form action="/cart-delete-items" method="POST">
+                <button class="btn danger" type="submit">Order</button>
+            </form>
+           </div>
         <% } else { %>
             <h1>No Products in Cart!</h1>
         <% } %>

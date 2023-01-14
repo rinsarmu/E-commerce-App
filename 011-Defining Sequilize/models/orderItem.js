@@ -8,7 +8,9 @@ const OrderItem = sequilize.define('orderItem', {
         autoIncrement: true,
         primaryKey: true,
         allowNull: false
-    }
+    },
+    quantity: INTEGER
+
 
 })
 

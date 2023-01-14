@@ -22,3 +22,14 @@
     margin: 0;
   }
   
+  .centered{
+    /* align-items: center;
+     */
+     display: flex;
+     align-self: center;
+     align-items: center;
+     justify-content: center;
+  }
+  .order{
+    margin-top: 1rem;
+  }
