@@ -10,6 +10,9 @@ const User = require("./models/user")
 
 const Cart = require('./models/cart')
 const CartItems = require('./models/cartItem')
+const Order = require('./models/order')
+const orderItem = require('./models/orderItem')
+
 
 const app = express()
 app.set('view engine', 'ejs')
